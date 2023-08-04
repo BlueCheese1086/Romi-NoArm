@@ -19,14 +19,15 @@ public class Robot extends TimedRobot {
   private Command teleopCommand;
   private RobotContainer robotContainer;
 
-  /**
-   * This function is run when the robot is first started up and should be used for any
-   * initialization code.
-   */
+  /** This function is run when the robot is first started. */
   @Override
   public void robotInit() {
     // Instantiate our RobotContainer.
     robotContainer = new RobotContainer();
+
+    // Gets commands from the RobotContainer class.
+    autonomousCommand = robotContainer.getAutonomousCommand();
+    teleopCommand = robotContainer.getTeleopCommand();
   }
 
   /**
@@ -35,69 +36,57 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
-    // commands, running already-scheduled commands, removing finished or interrupted commands,
-    // and running subsystem periodic() methods.  This must be called from the robot's periodic
-    // block in order for anything in the Command-based framework to work.
+    // Runs the Scheduler.
     CommandScheduler.getInstance().run();
   }
 
-  /** This function is called once each time the robot enters Disabled mode. */
+  /** This function is called once each time the robot enters the Disabled mode. */
   @Override
-  public void disabledInit() {}
-
-  @Override
-  public void disabledPeriodic() {}
-
-  /** This runs the autonomous command selected by your {@link RobotContainer} class. */
-  @Override
-  public void autonomousInit() {
-    // This ends the teleop command if it is running.
-    if (teleopCommand != null) {
-      teleopCommand.cancel();
-    }
-
-    // This gets the autonomous command from the RobotContainer class.
-    autonomousCommand = robotContainer.getAutonomousCommand();
-
-    // This starts the autonomous command.
-    if (autonomousCommand != null) {
-      autonomousCommand.schedule();
-    }
-  }
-
-  /** This function is called periodically during autonomous. */
-  @Override
-  public void autonomousPeriodic() {}
-
-  /** This runs the teleop command selected by your {@link RobotContainer} class. */
-  @Override
-  public void teleopInit() {
-    // This ends the autonomous command if it is running.
-    if (autonomousCommand != null) {
-      autonomousCommand.cancel();
-    }
-
-    // This gets the teleop command from the RobotContainer class.
-    teleopCommand = robotContainer.getArcadeDriveCommand();
-
-    // This starts the teleop command.
-    if (teleopCommand != null) {
-      teleopCommand.schedule();
-    }
-  }
-
-  /** This function is called periodically during operator control. */
-  @Override
-  public void teleopPeriodic() {}
-
-  @Override
-  public void testInit() {
-    // Cancels all running commands at the start of test mode.
+  public void disabledInit() {
+    // Cancels all scheduled commands.
     CommandScheduler.getInstance().cancelAll();
   }
 
-  /** This function is called periodically during test mode. */
+  /** This function is called periodically during the Disabled mode. */
+  @Override
+  public void disabledPeriodic() {}
+
+  /** This function is called once each time the robot enters the Autonomous mode. */
+  @Override
+  public void autonomousInit() {
+    // Cancels all scheduled commands.
+    CommandScheduler.getInstance().cancelAll();
+
+    // Starts the autonomous command.
+    autonomousCommand.schedule();
+  }
+
+  /** This function is called periodically during the Autonomous mode. */
+  @Override
+  public void autonomousPeriodic() {}
+
+  /** This function is called once each time the robot enters the Teleop mode. */
+  @Override
+  public void teleopInit() {
+    // Cancels all scheduled commands.
+    CommandScheduler.getInstance().cancelAll();
+
+    // Starts the teleop command.
+    teleopCommand.schedule();
+  }
+
+  /** This function is called periodically during the Teleop mode. */
+  @Override
+  public void teleopPeriodic() {}
+
+  /** This function is called once each time the robot enters the Test mode. */
+  @Override
+  public void testInit() {
+    // Cancels all scheduled commands.
+    CommandScheduler.getInstance().cancelAll();
+  }
+
+  /** This function is called periodically during the Test mode. */
   @Override
   public void testPeriodic() {}
 }

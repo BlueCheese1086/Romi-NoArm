@@ -16,9 +16,9 @@ public class ArcadeDrive extends CommandBase {
   private final Supplier<Double> m_zaxisRotateSupplier;
 
   /**
-   * Creates a new ArcadeDrive. This command will drive your robot according to the speed suppliers.
+   * Creates a new ArcadeDrive command. This command will drive your robot according to the speed suppliers.
    *
-   * @param drivetrain The drivetrain subsystem on which this command will run.
+   * @param drivetrain The subsystem on which this command will run.
    * @param xaxisSpeedSupplier Lambda supplier of forward/backward speed.
    * @param zaxisRotateSupplier Lambda supplier of rotational speed.
    */
@@ -29,21 +29,21 @@ public class ArcadeDrive extends CommandBase {
     addRequirements(drivetrain);
   }
 
-  // Called when the command is initially scheduled.
+  // This function is called when the command is initially scheduled.
   @Override
   public void initialize() {}
 
-  // Called every time the scheduler runs while the command is scheduled.
+  // This function is called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     m_drivetrain.arcadeDrive(m_xaxisSpeedSupplier.get(), m_zaxisRotateSupplier.get());
   }
 
-  // Called once the command ends or is interrupted.
+  // This function is called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}
 
-  // Returns true when the command should end.
+  // This function returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;

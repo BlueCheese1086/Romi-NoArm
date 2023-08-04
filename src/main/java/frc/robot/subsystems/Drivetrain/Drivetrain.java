@@ -5,9 +5,9 @@
 package frc.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.*;
 import frc.robot.sensors.RomiGyro;
@@ -19,9 +19,9 @@ public class Drivetrain extends SubsystemBase {
   private final Spark rightMotor = new Spark(RobotMap.RIGHTMOTOR);
 
   // Configures the encoders
-  private final Encoder leftEncoder = new Encoder(RobotMap.LEFTAENCODER, RobotMap.LEFTBENCODER);
-  private final Encoder rightEncoder = new Encoder(RobotMap.RIGHTAENCODER, RobotMap.RIGHTBENCODER);
-
+  private final Encoder leftEncoder = new Encoder(RobotMap.LEFTENCODERA, RobotMap.LEFTENCODERB);
+  private final Encoder rightEncoder = new Encoder(RobotMap.RIGHTENCODERA, RobotMap.RIGHTENCODERB);
+  
   // Confugures a gyro
   private final RomiGyro gyro = new RomiGyro();
 
@@ -69,57 +69,57 @@ public class Drivetrain extends SubsystemBase {
     rightMotor.set(rightSpeed * Motors.MAX_SPEED);
   }
 
-  /** The number of times the left motor has fully rotated. */
+  /** @return The number of times the left motor has fully rotated. */
   public int getLeftEncoderCount() {
     return leftEncoder.get();
   }
 
-  /** The number of times the right motor has fully rotated. */
+  /** @return The number of times the right motor has fully rotated. */
   public int getRightEncoderCount() {
     return rightEncoder.get();
   }
 
-  /** The average distance traveled by the left motor in inches. */
+  /** @return The average distance traveled by the left motor in inches. */
   public double getLeftDistanceInch() {
     return leftEncoder.getDistance();
   }
 
-  /** The average distance traveled by the right motor in inches. */
+  /** @return The average distance traveled by the right motor in inches. */
   public double getRightDistanceInch() {
     return rightEncoder.getDistance();
   }
 
-  /** The average distance traveled by each motor in inches. */
+  /** @return The average distance traveled by each motor in inches. */
   public double getAverageDistanceInch() {
     return (getLeftDistanceInch() + getRightDistanceInch()) / 2.0;
   }
 
-  /** The acceleration of the Romi along the X-axis in Gs. */
+  /** @return The acceleration of the Romi along the X-axis in Gs. */
   public double getAccelX() {
     return accelerometer.getX();
   }
 
-  /** The acceleration of the Romi along the Y-axis in Gs. */
+  /** @return The acceleration of the Romi along the Y-axis in Gs. */
   public double getAccelY() {
     return accelerometer.getY();
   }
 
-  /** The acceleration of the Romi along the Z-axis in Gs. */
+  /** @return The acceleration of the Romi along the Z-axis in Gs. */
   public double getAccelZ() {
     return accelerometer.getZ();
   }
 
-  /** Current angle of the Romi around the X-axis in degrees. */
+  /** @return Current angle of the Romi around the X-axis in degrees. */
   public double getGyroAngleX() {
     return gyro.getAngleX();
   }
 
-  /** Current angle of the Romi around the Y-axis in degrees. */
+  /** @return Current angle of the Romi around the Y-axis in degrees. */
   public double getGyroAngleY() {
     return gyro.getAngleY();
   }
 
-  /** Current angle of the Romi around the Z-axis in degrees. */
+  /** @return Current angle of the Romi around the Z-axis in degrees. */
   public double getGyroAngleZ() {
     return gyro.getAngleZ();
   }
@@ -135,6 +135,7 @@ public class Drivetrain extends SubsystemBase {
     rightEncoder.reset();
   }
 
+  // This method will be called once per scheduler run.
   @Override
-  public void periodic() {} // This method will be called once per scheduler run
+  public void periodic() {}
 }

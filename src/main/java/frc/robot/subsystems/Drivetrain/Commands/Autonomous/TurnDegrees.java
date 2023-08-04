@@ -14,7 +14,7 @@ public class TurnDegrees extends CommandBase {
   private final Drivetrain drive;
 
   /**
-   * Creates a new TurnDegrees command. This command will turn your robot a desired number of degrees at a desired speed.
+   * Creates a new TurnDegrees command. This command will turn the robot a desired number of degrees at a desired speed.
    *
    * @param speed The speed which the robot will drive.
    * @param degrees The number of degrees the robot will turn.
@@ -27,27 +27,27 @@ public class TurnDegrees extends CommandBase {
     addRequirements(drive);
   }
 
-  // Called when the command is initially scheduled.
+  // This function is called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // Set motors to stop, reset encoder values to set starting point
+    // Stops motors and resets encoder values to set starting point.
     drive.arcadeDrive(0, 0);
     drive.resetEncoders();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+  // This function is called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     drive.arcadeDrive(0, speed);
   }
 
-  // Called once the command ends or is interrupted.
+  // This function is called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     drive.arcadeDrive(0, 0);
   }
 
-  // Returns true when the command should end.
+  // This function returns true when the command should end.
   @Override
   public boolean isFinished() {
     // Need to convert distance travelled to degrees. The Standard Romi Chassis has a wheel placement diameter (149 mm) - width of the wheel (8 mm) = 141 mm, or 5.551 inches.

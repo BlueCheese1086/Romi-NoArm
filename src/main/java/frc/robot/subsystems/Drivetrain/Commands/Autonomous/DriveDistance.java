@@ -27,26 +27,26 @@ public class DriveDistance extends CommandBase {
     addRequirements(drive);
   }
 
-  // Called when the command is initially scheduled.
+  // This command is called when the command is initially scheduled.
   @Override
   public void initialize() {
     drive.arcadeDrive(0, 0);
     drive.resetEncoders();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+  // This command is called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     drive.arcadeDrive(speed, 0);
   }
 
-  // Called once the command ends or is interrupted.
+  // This command is called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     drive.arcadeDrive(0, 0);
   }
 
-  // Returns true when the command should end.
+  // This command returns true when the command should end.
   @Override
   public boolean isFinished() {
     // Compare distance travelled from start to desired distance

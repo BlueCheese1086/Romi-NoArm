@@ -11,14 +11,14 @@ import edu.wpi.first.wpilibj.event.BooleanEvent;
 import edu.wpi.first.wpilibj.event.EventLoop;
 
 /**
- * Handle input from Xbox 360 or Xbox One controllers connected to the Driver Station.
+ * Handle input from SNES controllers connected to the Driver Station.
  *
- * <p>This class handles Xbox input that comes from the Driver Station. Each time a value is
- * requested the most recent value is returned. There is a single class instance for each controller
+ * <p>This class handles SNES input that comes from the Driver Station. Each time a value is
+ * requested, the most recent value is returned. There is a single class instance for each controller
  * and the mapping of ports to hardware buttons depends on the code in the Driver Station.
  */
 public class SNESController extends GenericHID {
-    /** Represents a digital button on an XboxController. */
+    /** Represents a digital button on a SNESController. */
     public enum Button {  
         XButton(1),
         AButton(2),
@@ -36,9 +36,9 @@ public class SNESController extends GenericHID {
         }
 
         /**
-         * Get the human-friendly name of the button.
+         * Gets the string name of the button.
          *
-         * @return The human-friendly name of the button.
+         * @return The string name of the button.
          */
         @Override
         public String toString() {
@@ -46,7 +46,7 @@ public class SNESController extends GenericHID {
         }
     }
 
-    /** Represents an axis on an SNESController. */
+    /** Represents an axis on a SNESController. */
     public enum Axis {
         XAxis(0),
         YAxis(1);
@@ -58,9 +58,9 @@ public class SNESController extends GenericHID {
         }
 
         /**
-         * Get the human-friendly name of the axis.
+         * Gets the string name of the axis.
          *
-         * @return The human-friendly name of the axis.
+         * @return The string name of the axis.
          */
         @Override
         public String toString() {
@@ -75,8 +75,7 @@ public class SNESController extends GenericHID {
      */
     public SNESController(final int port) {
         super(port);
-
-        HAL.report(tResourceType.kResourceType_XboxController, port + 1); // Might be able to remove?
+        HAL.report(tResourceType.kResourceType_Controller, port + 1);
     }
 
     /**

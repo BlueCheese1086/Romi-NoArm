@@ -36,8 +36,8 @@ import frc.robot.Constants.RobotMap;
  * </ul>
  */
 public class OnBoardIO extends SubsystemBase {
+  // DIO 0
   private final DigitalInput buttonA = new DigitalInput(RobotMap.ABUTTON);
-  private final DigitalOutput yellowLed = new DigitalOutput(RobotMap.YELLOWLED);
 
   // DIO 1
   private DigitalInput buttonB;
@@ -46,6 +46,9 @@ public class OnBoardIO extends SubsystemBase {
   // DIO 2
   private DigitalInput buttonC;
   private DigitalOutput redLed;
+
+  // DIO 3
+  private final DigitalOutput yellowLed = new DigitalOutput(RobotMap.YELLOWLED);
 
   private static final double MESSAGE_INTERVAL = 1.0;
   private double nextMessageTime;
@@ -139,8 +142,7 @@ public class OnBoardIO extends SubsystemBase {
     yellowLed.set(value);
   }
 
+  // This method will be called once per scheduler run
   @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+  public void periodic() {}
 }
