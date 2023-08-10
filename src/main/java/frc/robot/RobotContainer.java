@@ -8,12 +8,10 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 
-import frc.robot.subsystems.Drivetrain.Commands.Autonomous.Autonomous;
-import frc.robot.subsystems.Drivetrain.Commands.TeleOp.ArcadeDrive;
 import frc.robot.subsystems.Drivetrain.Drivetrain;
-import frc.robot.subsystems.OnBoardIO.Commands.*;
+import frc.robot.subsystems.Drivetrain.Commands.*;
 import frc.robot.subsystems.OnBoardIO.OnBoardIO;
-import frc.robot.subsystems.OnBoardIO.OnBoardIO.ChannelMode;
+import frc.robot.subsystems.OnBoardIO.Commands.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -23,7 +21,7 @@ import frc.robot.subsystems.OnBoardIO.OnBoardIO.ChannelMode;
 public class RobotContainer {
   // Creates the various subsystems for the robot.
   private final Drivetrain drivetrain = new Drivetrain();
-  private final OnBoardIO onboardIO = new OnBoardIO(ChannelMode.INPUT, ChannelMode.INPUT);
+  private final OnBoardIO onboardIO = new OnBoardIO(OnBoardIO.ChannelMode.INPUT, OnBoardIO.ChannelMode.INPUT);
 
   // Creates the controller that drives the robot.
   private final SNESController snesController = new SNESController(0);
