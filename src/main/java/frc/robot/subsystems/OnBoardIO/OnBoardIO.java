@@ -145,4 +145,16 @@ public class OnBoardIO extends SubsystemBase {
   // This method will be called once per scheduler run
   @Override
   public void periodic() {}
+
+  public boolean getGreenLed() {
+    return (greenLed != null) ? greenLed.get() : false;
+  }
+
+  public boolean getRedLed() {
+    return (redLed != null) ? redLed.get() : false;
+  }
+
+  public boolean getYellowLed() {
+    return yellowLed.get();
+  }
 }
