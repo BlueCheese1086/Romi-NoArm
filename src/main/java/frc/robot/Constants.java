@@ -9,11 +9,9 @@ package frc.robot;
  *     <li> RobotMap
  *     <ul>
  *         <li> ABUTTON
- *         <li> ARMSERVO
  *         <li> BBUTTON
  *         <li> CBUTTON
  *         <li> GREENLED
- *         <li> GRIPPERSERVO
  *         <li> LEFTAENCODER
  *         <li> LEFTBENCODER
  *         <li> LEFTMOTOR
@@ -21,7 +19,6 @@ package frc.robot;
  *         <li> RIGHTAENCODER
  *         <li> RIGHTBENCODER
  *         <li> RIGHTMOTOR
- *         <li> WRISTSERVO
  *         <li> YELLOWLED
  *     </ul>
  *     <li> Motors
@@ -45,11 +42,9 @@ package frc.robot;
 public final class Constants {
     public final class RobotMap {
         public static final int ABUTTON = 0;
-        public static final int ARMSERVO = 2;
         public static final int BBUTTON = 1;
         public static final int CBUTTON = 2;
         public static final int GREENLED = 1;
-        public static final int GRIPPERSERVO = 3;
         public static final int LEFTENCODERA = 4;
         public static final int LEFTENCODERB = 5;
         public static final int LEFTMOTOR = 0;
@@ -57,7 +52,6 @@ public final class Constants {
         public static final int RIGHTENCODERA = 6;
         public static final int RIGHTENCODERB = 7;
         public static final int RIGHTMOTOR = 1;
-        public static final int WRISTSERVO = 4;
         public static final int YELLOWLED = 3;
     }
 

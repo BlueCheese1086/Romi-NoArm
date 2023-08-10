@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.PrintCommand;
 import frc.robot.subsystems.Drivetrain.Commands.Autonomous.Autonomous;
 import frc.robot.subsystems.Drivetrain.Commands.TeleOp.ArcadeDrive;
 import frc.robot.subsystems.Drivetrain.Drivetrain;
+import frc.robot.subsystems.OnBoardIO.Commands.*;
 import frc.robot.subsystems.OnBoardIO.OnBoardIO;
 import frc.robot.subsystems.OnBoardIO.OnBoardIO.ChannelMode;
 
@@ -48,11 +49,17 @@ public class RobotContainer {
     Trigger bButton = new Trigger(onboardIO::getButtonBPressed);
     Trigger cButton = new Trigger(onboardIO::getButtonCPressed);
     aButton.onTrue(new PrintCommand("Button A Pressed"));
+    aButton.onTrue(new SetYellow(onboardIO, true));
     aButton.onFalse(new PrintCommand("Button A Released"));
+    aButton.onFalse(new SetYellow(onboardIO, false));
     bButton.onTrue(new PrintCommand("Button B Pressed"));
+    bButton.onTrue(new SetYellow(onboardIO, true));
     bButton.onFalse(new PrintCommand("Button B Released"));
+    bButton.onFalse(new SetYellow(onboardIO, false));
     cButton.onTrue(new PrintCommand("Button C Pressed"));
+    cButton.onTrue(new SetYellow(onboardIO, true));
     cButton.onFalse(new PrintCommand("Button C Released"));
+    cButton.onFalse(new SetYellow(onboardIO, false));
   }
 
   /**
