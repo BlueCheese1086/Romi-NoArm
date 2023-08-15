@@ -21,7 +21,7 @@ public class Robot extends TimedRobot {
   /** This function is run when the robot is first started. */
   @Override
   public void robotInit() {
-    // Instantiate our RobotContainer.
+    // Creates our RobotContainer.
     RobotContainer robotContainer = new RobotContainer();
 
     // Gets commands from the RobotContainer class.
@@ -32,7 +32,7 @@ public class Robot extends TimedRobot {
   /** This function is called every 20 ms, no matter the mode. */
   @Override
   public void robotPeriodic() {
-    // Runs the Scheduler.
+    // Runs the scheduler.
     CommandScheduler.getInstance().run();
   }
 
@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
   /** This function is called once when the autonomous mode is exited. */
   @Override
   public void autonomousExit() {
-    teleopCommand.cancel();
+    autonomousCommand.cancel();
   }
 
   /** This function is called once when the teleop mode is initially started. */
@@ -54,7 +54,7 @@ public class Robot extends TimedRobot {
     teleopCommand.schedule();
   }
 
-  /** This function is called once when the teleop mode is excited. */
+  /** This function is called once when the teleop mode is exited. */
   @Override
   public void teleopExit() {
     teleopCommand.cancel();

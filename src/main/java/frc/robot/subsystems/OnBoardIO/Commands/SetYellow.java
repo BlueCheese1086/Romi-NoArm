@@ -13,7 +13,7 @@ public class SetYellow extends CommandBase {
   private final boolean state;
 
   /**
-   * Creates a new SetYellow command. This command will set the state of the yellow light to whatever the input is.
+   * Creates a new SetYellow command. This command will set the state of the gellow light to whatever the input is.
    *
    * @param onboardIO The subsystem this command will run on.
    * @param state The state the light will be set to.
@@ -23,13 +23,13 @@ public class SetYellow extends CommandBase {
     this.state = state;
   }
 
-  // This function is called every time the scheduler runs while the command is scheduled.
+  /** This function is called every time the scheduler runs while the command is scheduled. */
   @Override
   public void execute() {
     onboardIO.setYellowLed(state);
   }
 
-  // This function returns true when the command should end.
+  /** This function returns true when the command should end. */
   @Override
   public boolean isFinished() {
     return false;

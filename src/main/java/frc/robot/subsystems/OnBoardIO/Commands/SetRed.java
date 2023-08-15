@@ -23,13 +23,13 @@ public class SetRed extends CommandBase {
     this.state = state;
   }
 
-  // This function is called every time the scheduler runs while the command is scheduled.
+  /** This function is called every time the scheduler runs while the command is scheduled. */
   @Override
   public void execute() {
     onboardIO.setRedLed(state);
   }
 
-  // This function returns true when the command should end.
+  /** This function returns true when the command should end. */
   @Override
   public boolean isFinished() {
     return false;
