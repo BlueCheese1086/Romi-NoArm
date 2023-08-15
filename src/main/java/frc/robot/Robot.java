@@ -17,76 +17,46 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
   private Command autonomousCommand;
   private Command teleopCommand;
-  private RobotContainer robotContainer;
 
   /** This function is run when the robot is first started. */
   @Override
   public void robotInit() {
-    // Instantiate our RobotContainer.
-    robotContainer = new RobotContainer();
+    // Creates our RobotContainer.
+    RobotContainer robotContainer = new RobotContainer();
 
     // Gets commands from the RobotContainer class.
     autonomousCommand = robotContainer.getAutonomousCommand();
     teleopCommand = robotContainer.getTeleopCommand();
   }
 
-  /**
-   * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
-   * that you want ran during disabled, autonomous, teleoperated and test.
-   */
+  /** This function is called every 20 ms, no matter the mode. */
   @Override
   public void robotPeriodic() {
-    // Runs the Scheduler.
+    // Runs the scheduler.
     CommandScheduler.getInstance().run();
   }
 
-  /** This function is called once each time the robot enters the Disabled mode. */
-  @Override
-  public void disabledInit() {
-    // Cancels all scheduled commands.
-    CommandScheduler.getInstance().cancelAll();
-  }
-
-  /** This function is called periodically during the Disabled mode. */
-  @Override
-  public void disabledPeriodic() {}
-
-  /** This function is called once each time the robot enters the Autonomous mode. */
+  /** This function is called once when the autonomous mode is initially started. */
   @Override
   public void autonomousInit() {
-    // Cancels all scheduled commands.
-    CommandScheduler.getInstance().cancelAll();
-
-    // Starts the autonomous command.
     autonomousCommand.schedule();
   }
 
-  /** This function is called periodically during the Autonomous mode. */
+  /** This function is called once when the autonomous mode is exited. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousExit() {
+    autonomousCommand.cancel();
+  }
 
-  /** This function is called once each time the robot enters the Teleop mode. */
+  /** This function is called once when the teleop mode is initially started. */
   @Override
   public void teleopInit() {
-    // Cancels all scheduled commands.
-    CommandScheduler.getInstance().cancelAll();
-
-    // Starts the teleop command.
     teleopCommand.schedule();
   }
 
-  /** This function is called periodically during the Teleop mode. */
+  /** This function is called once when the teleop mode is exited. */
   @Override
-  public void teleopPeriodic() {}
-
-  /** This function is called once each time the robot enters the Test mode. */
-  @Override
-  public void testInit() {
-    // Cancels all scheduled commands.
-    CommandScheduler.getInstance().cancelAll();
+  public void teleopExit() {
+    teleopCommand.cancel();
   }
-
-  /** This function is called periodically during the Test mode. */
-  @Override
-  public void testPeriodic() {}
 }

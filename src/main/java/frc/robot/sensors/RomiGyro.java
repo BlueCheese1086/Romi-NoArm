@@ -20,7 +20,7 @@ public class RomiGyro {
   private double angleYOffset;
   private double angleZOffset;
 
-  /** Creates a new RomiGyro. */
+  /** Create a new RomiGyro. */
   public RomiGyro() {
     SimDevice gyroSimDevice = SimDevice.create("Gyro:RomiGyro");
     if (gyroSimDevice != null) {
@@ -35,61 +35,37 @@ public class RomiGyro {
     }
   }
 
-  /** @return The rate of turn in degrees-per-second around the X-axis. */
+  /** @return Rate of turn in degrees-per-second. */
   public double getRateX() {
-    if (simRateX != null) {
-      return simRateX.get();
-    }
-
-    return 0.0;
+    return (simRateX != null) ? simRateX.get() : 0;
   }
 
-  /** @return The rate of turn in degrees-per-second around the Y-axis. */
+  /** @return Rate of turn in degrees-per-second. */
   public double getRateY() {
-    if (simRateY != null) {
-      return simRateY.get();
-    }
-
-    return 0.0;
+    return (simRateY != null) ? simRateY.get() : 0;
   }
 
-  /** @return The rate of turn in degrees-per-second around the Z-axis. */
+  /** @return Rate of turn in degrees-per-second. */
   public double getRateZ() {
-    if (simRateZ != null) {
-      return simRateZ.get();
-    }
-
-    return 0.0;
+    return (simRateZ != null) ? simRateZ.get() : 0;
   }
 
-  /** @return The current angle in degrees around the X-axis. */
+  /** @return Current angle around X-axis in degrees. */
   public double getAngleX() {
-    if (simAngleX != null) {
-      return simAngleX.get() - angleXOffset;
-    }
-
-    return 0.0;
+    return (simAngleX != null) ? (simAngleX.get() - angleXOffset) : 0;
   }
 
-  /** @return The current angle in degrees around the Y-axis. */
+  /** @return Current angle around Y-axis in degrees. */
   public double getAngleY() {
-    if (simAngleY != null) {
-      return simAngleY.get() - angleYOffset;
-    }
-
-    return 0.0;
+    return (simAngleY != null) ? (simAngleY.get() - angleYOffset) : 0;
   }
 
-  /** @return The current angle in degrees around the Z-axis. */
+  /** @return Current angle around Z-axis in degrees. */
   public double getAngleZ() {
-    if (simAngleZ != null) {
-      return simAngleZ.get() - angleZOffset;
-    }
-
-    return 0.0;
+    return (simAngleZ != null) ? (simAngleZ.get() - angleZOffset) : 0;
   }
 
-  /** Resets the gyro angles to 0. */
+  /** Reset the gyro angles to 0. */
   public void reset() {
     if (simAngleX != null) {
       angleXOffset = simAngleX.get();

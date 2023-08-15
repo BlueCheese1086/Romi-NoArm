@@ -36,8 +36,8 @@ import frc.robot.Constants.RobotMap;
  * </ul>
  */
 public class OnBoardIO extends SubsystemBase {
-  // DIO 0
   private final DigitalInput buttonA = new DigitalInput(RobotMap.ABUTTON);
+  private final DigitalOutput yellowLed = new DigitalOutput(RobotMap.YELLOWLED);
 
   // DIO 1
   private DigitalInput buttonB;
@@ -46,9 +46,6 @@ public class OnBoardIO extends SubsystemBase {
   // DIO 2
   private DigitalInput buttonC;
   private DigitalOutput redLed;
-
-  // DIO 3
-  private final DigitalOutput yellowLed = new DigitalOutput(RobotMap.YELLOWLED);
 
   private static final double MESSAGE_INTERVAL = 1.0;
   private double nextMessageTime;
@@ -78,12 +75,12 @@ public class OnBoardIO extends SubsystemBase {
     }
   }
 
-  /** Gets if the A button is pressed. */
+  /** Returns the state of the A button. */
   public boolean getButtonAPressed() {
     return buttonA.get();
   }
 
-  /** Gets if the B button is pressed. */
+  /** Returns the state of the B button. */
   public boolean getButtonBPressed() {
     if (buttonB != null) {
       return buttonB.get();
@@ -97,7 +94,7 @@ public class OnBoardIO extends SubsystemBase {
     return false;
   }
 
-  /** Gets if the C button is pressed. */
+  /** Returns the state of the C button. */
   public boolean getButtonCPressed() {
     if (buttonC != null) {
       return buttonC.get();
@@ -140,21 +137,5 @@ public class OnBoardIO extends SubsystemBase {
   /** Sets the yellow LED. */
   public void setYellowLed(boolean value) {
     yellowLed.set(value);
-  }
-
-  // This method will be called once per scheduler run
-  @Override
-  public void periodic() {}
-
-  public boolean getGreenLed() {
-    return (greenLed != null) ? greenLed.get() : false;
-  }
-
-  public boolean getRedLed() {
-    return (redLed != null) ? redLed.get() : false;
-  }
-
-  public boolean getYellowLed() {
-    return yellowLed.get();
   }
 }

@@ -1,12 +1,14 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
+// For programming the arm, I used a great guide from https://www.chiefdelphi.com/t/romi-whats-next/419115/5
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 import frc.robot.subsystems.Drivetrain.Drivetrain;
 import frc.robot.subsystems.Drivetrain.Commands.*;
@@ -23,14 +25,14 @@ public class RobotContainer {
   private final Drivetrain drivetrain = new Drivetrain();
   private final OnBoardIO onboardIO = new OnBoardIO(OnBoardIO.ChannelMode.INPUT, OnBoardIO.ChannelMode.INPUT);
 
-  // Creates the controller that drives the robot.
+  // Looks for an SNES controller on port 0.
   private final SNESController snesController = new SNESController(0);
 
   // NOTE: The I/O pin functionality of the 5 exposed I/O pins depends on the hardware "overlay"
   // that is specified when launching the wpilib-ws server on the Romi raspberry pi.
   // Your subsystem configuration should take any overlays into account
 
-  /** The container for the robot. Contains subsystems, IO devices, and commands. */
+  /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     configureButtonBindings();
   }
@@ -75,6 +77,6 @@ public class RobotContainer {
    * @return The command to run in teleop.
    */
   public Command getTeleopCommand() {
-    return new ArcadeDrive(drivetrain, () -> -snesController.getRawAxis(1), () -> -snesController.getRawAxis(0));
+    return new ArcadeDrive(drivetrain, () -> -snesController.getYAxis(), () -> -snesController.getXAxis());
   }
 }
